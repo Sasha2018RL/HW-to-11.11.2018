@@ -5,8 +5,8 @@ Mongo::Logger.logger.level = Logger::FATAL
 
 class Posts
   # { :id, :name, :email } - поля хранимых контактов
-  def initialize
-    @client = Mongo::Client.new(['rpiserver.tk'], database: 'blog')
+  def initialize(client)
+    @client = client
   end
 
   def all

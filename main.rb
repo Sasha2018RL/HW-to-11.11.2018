@@ -1,14 +1,18 @@
-require 'sinatra'
 $stdout.sync = true
+
+require 'sinatra'
+require 'mongo'
 require './lib/posts_storage'
 require './lib/contacts_storage'
 require './lib/faq_storage'
 
 set :views, settings.root + '/templates'
 
-posts_storage = Posts.new
-contacts_storage = Contacts.new
-faq_storage = FAQ.new
+connection = Mongo::Client.new(['rpiserver.tk'], database: 'blog')
+
+posts_storage = Posts.new(connection)
+contacts_storage = Contacts.new(connection)
+faq_storage = FAQ.new(connection)
 
 get '/' do
   erb :welcome
