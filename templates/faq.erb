@@ -1,0 +1,18 @@
+<html>
+  <head>
+    <title>
+      Post page
+    </title>
+  </head>
+  <body>
+    <% if faqs.nil? %>
+      <h1>Your FAQ item was not found!</h1>
+    <% else %>
+      <h1><%= faqs[:title] %></h1>
+      <p>
+        <%= faqs[:text] %>
+      </p>
+    <% end %>
+    <a href="/faq">return to FAQ</a>
+  </body>
+</html>
